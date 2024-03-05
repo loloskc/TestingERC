@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
 using WebApi.Data;
 using WebApi.Models;
+
 
 namespace WebApi.Controllers
 {
@@ -99,10 +102,43 @@ namespace WebApi.Controllers
 
             return NoContent();
         }
+        [HttpGet("Exist")]
+        public async Task<ActionResult<IEnumerable<BankBook>>> GetByResidentExist([FromQuery]bool exist)
+        {
+
+            if (exist)
+            {
+                return await _context.BankBooks.Where(e => e.ResidentsId != null).Include(e => e.Residents).ToListAsync();
+            }
+            else
+            {
+                return await _context.BankBooks.Where(e => e.ResidentsId == null).Include(e => e.Residents).ToListAsync();
+            }
+        }
+
+        [HttpGet("DateStart")]
+        public async Task<ActionResult<IEnumerable<BankBook>>> GetByDateStart([FromQuery] string datestart)
+        {
+            return await _context.BankBooks.Where(e => e.DateStart == datestart).Include(e => e.Residents).ToListAsync();
+        }
+
+        [HttpGet("Address")]
+        public async Task<ActionResult<IEnumerable<BankBook>>> GetByAddress([FromQuery] string address)
+        {
+            return await _context.BankBooks.Where(e => e.Address == address).Include(e => e.Residents).ToListAsync();
+        }
+
+        [HttpGet("FIO")]
+        public async Task<ActionResult<IEnumerable<BankBook>>> GetByFIO([FromQuery] string FIO)
+        {
+            return await _context.BankBooks.Where(e => e.Residents.FirstOrDefault(e=>e.FIO==FIO)!=null).Include(e => e.Residents).ToListAsync();
+        }
 
         private bool BankBookExists(int id)
         {
             return _context.BankBooks.Any(e => e.Id == id);
         }
+
+
     }
 }

@@ -8,8 +8,8 @@ namespace WebApi.Models
     {
         public int Id { get; set; }
         public string Number { get; set; }
-        public DateTime DateStart { get; set; }
-        public DateTime DateEnd { get; set; }
+        public string DateStart { get; set; }
+        public string DateEnd { get; set; }
         public string Address { get; set; }
         public int Sqaure { get; set; }
         public int ResidentsId { get; set; }

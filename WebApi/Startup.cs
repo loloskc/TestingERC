@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 using WebApi.Data;
 using Newtonsoft.Json.Serialization;
 using Microsoft.Extensions.Options;
-
+using System.Text.Json.Serialization;
 
 namespace WebApi
 {

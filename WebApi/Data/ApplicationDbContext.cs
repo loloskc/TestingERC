@@ -18,6 +18,7 @@ namespace WebApi.Data
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Resident>()
                 .HasOne(e => e.BankBook).WithMany(e => e.Residents).HasForeignKey(e => e.BankBookId);
+            modelBuilder.Entity<BankBook>().HasIndex(e => e.Number).IsUnique();
                 
         }
     }
