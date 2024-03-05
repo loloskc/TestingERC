@@ -9,8 +9,8 @@ using WebApi.Data;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240305170023_first")]
-    partial class first
+    [Migration("20240305180031_sadadfs")]
+    partial class sadadfs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,15 +36,13 @@ namespace WebApi.Migrations
                     b.Property<string>("Number")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("ResidentId")
+                    b.Property<int>("ResidentsId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Sqaure")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ResidentId");
 
                     b.ToTable("BankBooks");
                 });
@@ -55,6 +53,9 @@ namespace WebApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("BankBookId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("FIO")
                         .HasColumnType("TEXT");
 
@@ -63,18 +64,23 @@ namespace WebApi.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BankBookId");
+
                     b.ToTable("Residents");
+                });
+
+            modelBuilder.Entity("WebApi.Models.Resident", b =>
+                {
+                    b.HasOne("WebApi.Models.BankBook", "BankBook")
+                        .WithMany("Residents")
+                        .HasForeignKey("BankBookId");
+
+                    b.Navigation("BankBook");
                 });
 
             modelBuilder.Entity("WebApi.Models.BankBook", b =>
                 {
-                    b.HasOne("WebApi.Models.Resident", "Resident")
-                        .WithMany()
-                        .HasForeignKey("ResidentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Resident");
+                    b.Navigation("Residents");
                 });
 #pragma warning restore 612, 618
         }

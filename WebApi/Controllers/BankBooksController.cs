@@ -25,14 +25,14 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<BankBook>>> GetBankBooks()
         {
-            return await _context.BankBooks.Include(c=>c.Resident).ToListAsync();
+            return await _context.BankBooks.Include(c=>c.Residents).ToListAsync();
         }
 
         // GET: api/BankBooks/5
         [HttpGet("{id}")]
         public async Task<ActionResult<BankBook>> GetBankBook(int id)
         {
-            var bankBook = await _context.BankBooks.Include(c=>c.Resident).FirstOrDefaultAsync(e=>e.Id==id);
+            var bankBook = await _context.BankBooks.Include(c=>c.Residents).FirstOrDefaultAsync(e=>e.Id==id);
 
             if (bankBook == null)
             {

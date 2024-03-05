@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApi.Models
 {
@@ -10,7 +12,7 @@ namespace WebApi.Models
         public DateTime DateEnd { get; set; }
         public string Address { get; set; }
         public int Sqaure { get; set; }
-        public int ResidentId { get; set; }
-        public Resident Resident { get; set; }
+        public int ResidentsId { get; set; }
+        public IEnumerable<Resident> Residents { get; set; }
     }
 }

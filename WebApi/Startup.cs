@@ -8,11 +8,16 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using WebApi.Data;
+using Newtonsoft.Json.Serialization;
+using Microsoft.Extensions.Options;
+
 
 namespace WebApi
 {
@@ -46,6 +51,13 @@ namespace WebApi
                     .AllowAnyHeader();
                 });
             });
+            services.AddControllersWithViews().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+            });
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,7 +71,7 @@ namespace WebApi
             }
 
             //app.UseHttpsRedirection();
-
+            
             app.UseRouting();
 
             app.UseAuthorization();

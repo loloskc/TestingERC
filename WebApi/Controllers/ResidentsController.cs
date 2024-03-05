@@ -25,14 +25,15 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Resident>>> GetResidents()
         {
-            return await _context.Residents.ToListAsync();
+            var list = await _context.Residents.Include(e => e.BankBook).ToListAsync();
+            return list;
         }
 
         // GET: api/Residents/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Resident>> GetResident(int id)
         {
-            var resident = await _context.Residents.FindAsync(id);
+            var resident = await _context.Residents.Include(e=>e.BankBook).FirstOrDefaultAsync(e=>e.Id ==id);
 
             if (resident == null)
             {
