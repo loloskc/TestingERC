@@ -77,6 +77,7 @@ async function addResident(){
             bankBookId:Number(ls),
             phoneNumber:String(phoneNumber)
         };
+        console.log(JSON.stringify(resident))
         createNewResident(resident);
         console.log(resident);
     }

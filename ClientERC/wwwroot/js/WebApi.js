@@ -97,13 +97,32 @@ function createNewResident(resident){
         method:'POST',
         headers:{
             'Accept':'application/json',
-            'Content-type':'applicaton/json'
+            'Content-type':'application/json'
         },
         body: JSON.stringify(resident)
     })
         .then(response=>response.json())
         .then(()=>{
-            //
+            window.open('https://localhost:44357/resident/index')
         })
         .catch(error=>console.error('Unable to add item',error));
+}
+
+function deleteResident(id){
+    fetch(urlResident+id,{
+        method:'DELETE'
+    })
+        .then(()=>{
+            window.open('https://localhost:44357/resident/index','_self')
+
+        })
+        .catch(error=>console.error('Unable to delete book',error));
+
+}
+
+async function getResidentNotVoid(id){
+    const ds = await fetch(urlResident+id);
+    const data = await ds.json()
+    return data;
+
 }

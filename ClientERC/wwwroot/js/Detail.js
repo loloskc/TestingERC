@@ -75,3 +75,5 @@ function _displayResident(data){
     pAddress.appendChild(address);
     div.appendChild(pAddress)
 }
+
+

@@ -4,6 +4,9 @@ function openEditPage(id){
     loadEdit(id);
 }
 
+function openEditResident(id){
+    window.open('https://localhost:44357/resident/edit/'+id,'_self')
+}
 async function loadEdit(id){
     const item = await getBankNotVoid(id);
     console.log(item)
@@ -41,3 +44,16 @@ async function editBankBook(id){
     }
 }
 
+async function loadEditResident(id){
+    const item = await getResidentNotVoid(id);
+    console.log(item);
+
+    document.getElementById('edit-fio').value = item.fio;
+    document.getElementById('edit-phoneNumber').value = item.phoneNumber;
+    document.getElementById('select').value = item.bankBookId;
+
+}
+
+async function editResident(id){
+
+}
