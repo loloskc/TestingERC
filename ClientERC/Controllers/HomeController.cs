@@ -36,6 +36,24 @@ namespace ClientERC.Controllers
         {
             return View(id);
         }
+        public IActionResult Filter()
+        {
+            return View();
+        }
+
+        public IActionResult FilterExist() 
+        {
+            return View();
+        }
+        public IActionResult FilterByDate()
+        {
+            return View();
+        }
+
+        public IActionResult FilterByFio()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {

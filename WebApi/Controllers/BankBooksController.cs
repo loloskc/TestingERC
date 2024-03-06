@@ -108,11 +108,11 @@ namespace WebApi.Controllers
 
             if (exist)
             {
-                return await _context.BankBooks.Where(e => e.Residents != null).Include(e => e.Residents).ToListAsync();
+                return await _context.BankBooks.Where(e => e.Residents.Count()> 0).Include(e => e.Residents).ToListAsync();
             }
             else
             {
-                return await _context.BankBooks.Where(e => e.Residents == null).Include(e => e.Residents).ToListAsync();
+                return await _context.BankBooks.Where(e => e.Residents.Count() <= 0).Include(e => e.Residents).ToListAsync();
             }
         }
 

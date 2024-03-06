@@ -15,6 +15,20 @@ function getBankBook(id) {
         .catch(error => console.error('Unable to get items.', error));
 }
 
+function getBookByExist(flag){
+    const ds = fetch(urlBank+'Exist?exist='+flag)
+        .then(response=>response.json())
+        .then(data=>_displayItems(data))
+        .catch(error=>console.error('Unable to get items',error));
+}
+
+function getBookByDate(date){
+    const ds = fetch(urlBank+'DateStart?datestart='+date)
+        .then(response=>response.json())
+        .then(data=>_displayItems(data))
+        .catch(error=>console.error('Unable to get items',error));
+}
+
 async function getBankNotVoid(id){
     const ds = await fetch(urlBank+id);
     const data =await ds.json();
@@ -27,6 +41,8 @@ async function existByNumber(number){
     const isValid = await JSON.parse(data);
     return isValid;
 }
+
+
 
 function createNewBook(bankBook){
     const ds = fetch(urlBank,{
@@ -141,3 +157,4 @@ function updateResident(resident){
         })
         .catch(error=>console.error('Unable to update item',error));
 }
+

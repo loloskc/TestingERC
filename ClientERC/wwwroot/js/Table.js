@@ -121,3 +121,17 @@ function _displayResidents(data){
         tdAddress.appendChild(Address);
     })
 }
+
+function checkBoxIs(){
+    var flag = document.getElementById('isExist').checked
+    console.log(flag);
+    getBookByExist(flag)
+
+}
+
+function getBookByDateStart(){
+    var dateStart = document.getElementById('isDate').value;
+    console.log(dateStart);
+    getBookByDate(dateStart);
+}
+
