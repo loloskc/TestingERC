@@ -8,8 +8,8 @@ function openDetailPage(id){
 
 function _displayItem(data){
     console.log(data);
+
     const div = document.getElementById('detailpage');
-    console.log(div);
 
     let pNumber = document.createElement('h2');
     let Number = document.createTextNode("Номер лицевого счета - "+data.number);
@@ -34,9 +34,10 @@ function _displayItem(data){
     let pSquare = document.createElement('h2');
     let Square = document.createTextNode("Площадь помещения - "+data.sqaure);
     pSquare.appendChild(Square);
-    div.appendChild(pSquare)
+    div.appendChild(pSquare);
 
-    
+    console.log(data.residents.$values);
+    _displayDetailTable(data.residents.$values);
 
 
 

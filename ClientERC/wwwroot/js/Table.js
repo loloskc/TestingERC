@@ -44,3 +44,48 @@ function _displayItems(data){
 
 }
 
+function _displayDetailTable(data){
+    const tBody = document.getElementById('residentTable');
+    console.log(data);
+    tBody.innerHTML = '';
+    data.forEach(item=>{
+        let tr = tBody.insertRow();
+        tr.id = item.id;
+
+        let tdId = tr.insertCell(0);
+        let Id = document.createTextNode(item.id);
+        tdId.appendChild(Id);
+
+        let tdFIO = tr.insertCell(1);
+        let FIO = document.createTextNode(item.fio);
+        tdFIO.appendChild(FIO);
+
+        let tdPhone = tr.insertCell(2);
+        let Phone = document.createTextNode(item.phoneNumber);
+        tdPhone.appendChild(Phone);
+
+        let tdButton = tr.insertCell(3);
+        let button = document.createElement('button')
+        button.type='button';
+        button.className = 'btn btn-danger'
+        button.innerHTML ='Удалить'
+        button.onclick = (event) =>{
+
+        }
+        console.log(button);
+        tdButton.appendChild(button)
+
+        let buttonEdit = document.createElement('button');
+        buttonEdit.type = 'button';
+        buttonEdit.className = 'btn btn-warning';
+        buttonEdit.innerHTML ='Редактировать';
+        buttonEdit.onclick = (event) =>{
+
+        }
+        buttonEdit.style = 'margin-left:10px'
+        tdButton.appendChild(buttonEdit)
+
+
+    });
+
+}
