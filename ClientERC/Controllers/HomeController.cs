@@ -28,6 +28,15 @@ namespace ClientERC.Controllers
             return View(id);
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
+        public IActionResult Edit(int id)
+        {
+            return View(id);
+        }
+
         public IActionResult Privacy()
         {
             return View();

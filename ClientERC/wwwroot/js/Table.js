@@ -89,3 +89,35 @@ function _displayDetailTable(data){
     });
 
 }
+
+function _displayResidents(data){
+    const tBody = document.getElementById('resident');
+    console.log(data)
+    tBody.innerHTML='';
+    data.$values.forEach(item=>{
+        let tr = tBody.insertRow();
+        tr.id = item.id;
+        tr.onclick = (event) =>{
+            openDetailResident(item.id)
+        }
+
+        let tdFIO = tr.insertCell(0);
+        let FIO = document.createTextNode(item.fio);
+        tdFIO.appendChild(FIO);
+
+        let tdPhone = tr.insertCell(1);
+        let Phone = document.createTextNode(item.phoneNumber);
+        tdPhone.appendChild(Phone);
+
+
+        let tdAddress = tr.insertCell(2);
+        let Address;
+        if(item.bankBook!=null){
+            Address = document.createTextNode(item.bankBook.address);
+        }
+        else{
+            Address =  document.createTextNode('Нет');
+        }
+        tdAddress.appendChild(Address);
+    })
+}

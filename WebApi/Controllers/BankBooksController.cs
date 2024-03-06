@@ -91,7 +91,7 @@ namespace WebApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBankBook(int id)
         {
-            var bankBook = await _context.BankBooks.FindAsync(id);
+            var bankBook = await _context.BankBooks.Include(c=>c.Residents).FirstOrDefaultAsync(i=>i.Id == id);
             if (bankBook == null)
             {
                 return NotFound();
@@ -108,11 +108,11 @@ namespace WebApi.Controllers
 
             if (exist)
             {
-                return await _context.BankBooks.Where(e => e.ResidentsId != null).Include(e => e.Residents).ToListAsync();
+                return await _context.BankBooks.Where(e => e.Residents != null).Include(e => e.Residents).ToListAsync();
             }
             else
             {
-                return await _context.BankBooks.Where(e => e.ResidentsId == null).Include(e => e.Residents).ToListAsync();
+                return await _context.BankBooks.Where(e => e.Residents == null).Include(e => e.Residents).ToListAsync();
             }
         }
 
@@ -132,6 +132,17 @@ namespace WebApi.Controllers
         public async Task<ActionResult<IEnumerable<BankBook>>> GetByFIO([FromQuery] string FIO)
         {
             return await _context.BankBooks.Where(e => e.Residents.FirstOrDefault(e=>e.FIO==FIO)!=null).Include(e => e.Residents).ToListAsync();
+        }
+
+        [HttpGet("NumberExist")]
+        public async Task<bool> ExistByNumber([FromQuery] string Number)
+        {
+            var record = await _context.BankBooks.FirstOrDefaultAsync(i=>i.Number==Number);
+            if (record != null)
+            {
+                return false;
+            }
+            return true;
         }
 
         private bool BankBookExists(int id)

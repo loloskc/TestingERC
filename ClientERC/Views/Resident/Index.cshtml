@@ -1,0 +1,29 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="text-center">
+    <h1 class="display-4">Список проживающих</h1>
+    <button id="addButton" type="button" class="btn btn-success" style="margin-bottom:10px;margin-left:1016px;" onclick="openCreateResident()">Добавить</button>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ФИО</th>
+                <th scope="col">Номер телефона</th>
+                <th scope="col">Адрес проживание</th>
+            </tr>
+        </thead>
+        <tbody id="resident">
+
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+    window.addEventListener('load', () => {
+        getResidetTable();
+    });
+
+</script>
