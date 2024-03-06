@@ -11,6 +11,6 @@ function getBankBooks(){
 function getBankBook(id) {
     const ds = fetch(urlBank+id)
         .then(response=>response.json())
-        .then(data=>openDetailPage(data))
+        .then(data=>_displayItem(data))
         .catch(error => console.error('Unable to get items.', error));
 }

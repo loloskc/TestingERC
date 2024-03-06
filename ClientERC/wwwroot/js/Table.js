@@ -8,7 +8,7 @@ function _displayItems(data){
         let tr = tBody.insertRow();
         tr.id = item.id;
         tr.onclick = (event) =>{
-            openDetailPage()
+            openDetailPage(item.id)
         }
 
         let tdNumber = tr.insertCell(0);
