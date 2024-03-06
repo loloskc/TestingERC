@@ -55,5 +55,19 @@ async function loadEditResident(id){
 }
 
 async function editResident(id){
+    var fio = document.getElementById('edit-fio').value;
+    var phoneNumber = document.getElementById('edit-phoneNumber').value;
+    var ls = document.getElementById('select').value;
+    console.log(ls);
 
+    if(fio!=''&&phoneNumber!=''){
+        const resident ={
+            id:id,
+            fio: String(fio),
+            bankBookId:Number(ls),
+            phoneNumber:String(phoneNumber)
+        };
+
+        updateResident(resident);
+    }
 }

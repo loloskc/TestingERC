@@ -70,7 +70,7 @@ function _displayDetailTable(data){
         button.className = 'btn btn-danger'
         button.innerHTML ='Удалить'
         button.onclick = (event) =>{
-
+            deleteResident(item.id);
         }
         console.log(button);
         tdButton.appendChild(button)
@@ -80,7 +80,7 @@ function _displayDetailTable(data){
         buttonEdit.className = 'btn btn-warning';
         buttonEdit.innerHTML ='Редактировать';
         buttonEdit.onclick = (event) =>{
-
+            openEditResident(item.id)
         }
         buttonEdit.style = 'margin-left:10px'
         tdButton.appendChild(buttonEdit)

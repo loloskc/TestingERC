@@ -126,3 +126,18 @@ async function getResidentNotVoid(id){
     return data;
 
 }
+
+function updateResident(resident){
+    const ds = fetch(urlResident+resident.id,{
+        method:'PUT',
+        headers:{
+            'Accept':'application/json',
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify(resident)
+    })
+        .then(()=>{
+            window.open('https://localhost:44357/resident/index','_self')
+        })
+        .catch(error=>console.error('Unable to update item',error));
+}
