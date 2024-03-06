@@ -125,7 +125,9 @@ namespace WebApi.Controllers
         [HttpGet("Address")]
         public async Task<ActionResult<IEnumerable<BankBook>>> GetByAddress([FromQuery] string address)
         {
-            return await _context.BankBooks.Where(e => e.Address == address).Include(e => e.Residents).ToListAsync();
+            address = address.Insert(0, "%");
+            address += "%";
+            return await _context.BankBooks.Where(e =>EF.Functions.Like(e.Address,address)).Include(e => e.Residents).ToListAsync();
         }
 
         [HttpGet("FIO")]

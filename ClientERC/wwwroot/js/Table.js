@@ -140,3 +140,9 @@ function getBooksByFio(){
     console.log(fio);
     getBookByFio(fio);
 }
+
+function getBooksByAddress(){
+    var address = document.getElementById('isAddress').value;
+    console.log(address);
+    getBookByAddress(address);
+}

@@ -36,6 +36,13 @@ function getBookByFio(fio){
         .catch(error=>console.error('Unable to get items',error));
 }
 
+function getBookByAddress(address){
+    const ds = fetch(urlBank+'Address?address='+address)
+        .then(response=>response.json())
+        .then(data=>_displayItems(data))
+        .catch(error=>console.error('Unable to get items',error));
+}
+
 async function getBankNotVoid(id){
     const ds = await fetch(urlBank+id);
     const data =await ds.json();
