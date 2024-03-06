@@ -135,3 +135,8 @@ function getBookByDateStart(){
     getBookByDate(dateStart);
 }
 
+function getBooksByFio(){
+    var fio = document.getElementById('isFio').value;
+    console.log(fio);
+    getBookByFio(fio);
+}

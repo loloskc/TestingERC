@@ -129,9 +129,24 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("FIO")]
-        public async Task<ActionResult<IEnumerable<BankBook>>> GetByFIO([FromQuery] string FIO)
+        public IEnumerable<BankBook> GetByFIO([FromQuery] string FIO)
         {
-            return await _context.BankBooks.Where(e => e.Residents.FirstOrDefault(e=>e.FIO==FIO)!=null).Include(e => e.Residents).ToListAsync();
+            FIO = FIO.Insert(0, "%");
+            FIO += "%";
+            var residents = _context.Residents.Where(e=>EF.Functions.Like(e.FIO,FIO)).Include(e=>e.BankBook).ToList();
+            List<BankBook> result = new List<BankBook>();
+            HashSet<int?> ids = new HashSet<int?>();
+            foreach (var resident in residents)
+            {
+                if(resident.BankBook != null&&!ids.Contains(resident.BankBookId))
+                {
+                    ids.Add(resident.BankBookId);
+                    result.Add(resident.BankBook);
+                }
+            }
+               
+            return result;
+          
         }
 
         [HttpGet("NumberExist")]

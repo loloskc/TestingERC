@@ -29,6 +29,13 @@ function getBookByDate(date){
         .catch(error=>console.error('Unable to get items',error));
 }
 
+function getBookByFio(fio){
+    const ds = fetch(urlBank+'FIO?FIO='+fio)
+        .then(response=>response.json())
+        .then(data=>_displayItems(data))
+        .catch(error=>console.error('Unable to get items',error));
+}
+
 async function getBankNotVoid(id){
     const ds = await fetch(urlBank+id);
     const data =await ds.json();
